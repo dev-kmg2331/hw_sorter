@@ -2,10 +2,12 @@ package org.hw_sorter.hw_rdbms.content;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +22,7 @@ public class Content {
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
 
+    private int requiredPersonNum;
 
     private enum Difficulty {
         NORMAL, HARD, HELL, THE_FIRST
