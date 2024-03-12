@@ -1,18 +1,21 @@
 package org.hw_sorter.hw_rdbms.character;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hw_sorter.hw_rdbms.common.Audit;
 import org.hw_sorter.hw_rdbms.user.User;
 
 import java.util.List;
 
-@Entity
+@Entity(name = "character_la")
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
+@ToString(exclude = {"characterContents", "user"})
 public class Character extends Audit {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
     private String name;
@@ -21,7 +24,7 @@ public class Character extends Audit {
 
     private String description;
 
-    private boolean goldGeneration;
+    private boolean goldGenerate;
 
     private int contentCount;
 
