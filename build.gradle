@@ -51,6 +51,12 @@ subprojects {
     }
 }
 
+project(':hw_api') {
+    dependencies {
+        implementation project(':service')
+    }
+}
+
 project(':service') {
     dependencies {
         implementation project(':hw_rdbms')

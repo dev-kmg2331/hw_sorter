@@ -3,6 +3,7 @@ package org.hw_sorter.service.content;
 import lombok.Getter;
 import lombok.Setter;
 import org.hw_sorter.hw_rdbms.content.Content;
+import org.hw_sorter.service.character.exception.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,6 +18,6 @@ public class ContentCache {
     }
 
     public Content getContent(Long id) {
-        return this.contents.stream().filter(c -> c.getId().equals(id)).findFirst().orElseThrow(RuntimeException::new);
+        return this.contents.stream().filter(c -> c.getId().equals(id)).findFirst().orElseThrow(EntityNotFoundException::new);
     }
 }

@@ -1,7 +1,9 @@
 package org.hw_sorter.hw_la_client;
 
+import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.util.retry.Retry;
@@ -23,7 +25,7 @@ public class ReactiveClient {
                         Retry.fixedDelay(1, Duration.ofSeconds(3))
                                 .onRetryExhaustedThrow((retryBackoffSpec, retrySignal) -> new RuntimeException())
                 )
-                .log()
+//                .map(JSONObject::new)
                 .doOnSuccess(log::info)
                 .block();
     }

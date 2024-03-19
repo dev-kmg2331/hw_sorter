@@ -1,20 +1,19 @@
 package org.hw_sorter.hw_rdbms.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hw_sorter.hw_rdbms.character.Character;
 import org.hw_sorter.hw_rdbms.common.Audit;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor @Builder
+@ToString(exclude = "characters")
+@Getter
 public class User extends Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,4 +23,6 @@ public class User extends Audit {
 
     private String password;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Character> characters = new ArrayList<>();
 }

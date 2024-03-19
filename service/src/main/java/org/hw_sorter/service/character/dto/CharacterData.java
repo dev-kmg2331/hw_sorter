@@ -8,7 +8,7 @@ import org.hw_sorter.hw_rdbms.character.Character;
 @Getter @Builder @ToString
 public class CharacterData {
     private String name;
-    private String itemLevel;
+    private int itemLevel;
     private int contentCount;
     private Character.ClassRole role;
 

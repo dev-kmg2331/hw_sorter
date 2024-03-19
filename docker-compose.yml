@@ -12,4 +12,4 @@ services:
       MARIADB_ROOT_PASSWORD: 1234
       TZ: "Asia/Seoul"
     volumes:
-      - ./db/var/lib/mysql:/var/lib/mysql
+      - ../db/var/lib/mysql:/var/lib/mysql

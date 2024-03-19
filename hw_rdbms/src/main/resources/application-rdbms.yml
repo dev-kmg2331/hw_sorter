@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: rdbms
+  datasource:
+    url: jdbc:mariadb://localhost:13306/hw_sorter?useUnicode=true&characterEncoding=utf8 #ubuntu 192.168.182.34
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+

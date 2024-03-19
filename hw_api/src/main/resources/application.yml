@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: hw_api
+
+  profiles:
+    include:
+      - rdbms
+
+server:
+  port: 8087
+
+springdoc:
+  packages-to-scan: org.hw_sorter.hw_api
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  api-docs:
+    path: /api-docs/json
+

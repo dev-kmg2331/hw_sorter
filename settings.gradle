@@ -3,3 +3,4 @@ rootProject.name = 'hw_sorter'
 include('service')
 include('hw_rdbms')
 include('hw_la_client_reactive')
+include('hw_api')
