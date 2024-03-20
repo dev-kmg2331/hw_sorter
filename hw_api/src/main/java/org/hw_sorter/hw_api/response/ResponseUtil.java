@@ -2,21 +2,28 @@ package org.hw_sorter.hw_api.response;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
-public class ResponseFactory {
+public class ResponseUtil {
 
-    public <T> ResponseEntity<?> success(T data) {
+    public static ResponseEntity<?> success() {
+        return success(null);
+    }
+
+    public static <T> ResponseEntity<?> success(T data) {
         return ResponseEntity.ok(
                 SuccessResponse.builder()
                         .data(data)
+                        .msg("request success")
                         .build()
         );
     }
 
-    public <T> ResponseEntity<?> fail(T data, int status, String errMsg) {
+    public static <T> ResponseEntity<?> fail(int status, String errMsg) {
+        return fail(status, errMsg, null);
+    }
+
+    public static <T> ResponseEntity<?> fail(int status, String errMsg, T data) {
         return ResponseEntity.status(status)
                 .body(
                         FailResponse.builder()

@@ -1,14 +1,11 @@
 package org.hw_sorter.hw_api.endpoint;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hw_sorter.hw_api.config.jwt.JwtConfig;
-import org.hw_sorter.hw_api.response.ResponseFactory;
+import org.hw_sorter.hw_api.response.ResponseUtil;
 import org.hw_sorter.service.user.UserService;
 import org.hw_sorter.service.user.dto.UserLogin;
 import org.hw_sorter.service.user.dto.UserResponse;
@@ -24,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/user")
 public class UserController {
     private final UserService userService;
-    private final ResponseFactory responseFactory;
 
     @PostMapping("login")
     @Operation(summary = "유저 로그인")
@@ -33,9 +29,9 @@ public class UserController {
 
         response.setHeader(
                 HttpHeaders.AUTHORIZATION,
-                JwtConfig.createJwt(JwtConfig.JwtType.ACCESS, "user", userResponse)
+                "Bearer " + JwtConfig.createJwt(JwtConfig.JwtType.ACCESS, "user", userResponse)
         );
 
-        return responseFactory.success(userResponse);
+        return ResponseUtil.success(userResponse);
     }
 }

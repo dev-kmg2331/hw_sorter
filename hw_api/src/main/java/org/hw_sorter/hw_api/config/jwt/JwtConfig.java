@@ -3,15 +3,12 @@ package org.hw_sorter.hw_api.config.jwt;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
-import org.hw_sorter.hw_api.global.exception.JwtExpiredException;
 import org.hw_sorter.hw_api.global.exception.JwtValidationFailException;
 
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -90,8 +87,6 @@ public class JwtConfig {
                     .getBody();
 
             return new ObjectMapper().readValue(claims.get(key, String.class), payloadClass);
-        } catch (ExpiredJwtException e) {
-            throw new JwtExpiredException();
         } catch (Exception e) {
             log.error("exception trace : ", e);
             throw new JwtValidationFailException();

@@ -5,6 +5,7 @@ import lombok.*;
 import org.hw_sorter.hw_rdbms.common.Audit;
 import org.hw_sorter.hw_rdbms.content.Content;
 import org.hw_sorter.hw_rdbms.user.User;
+import org.w3c.dom.CharacterData;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,18 +23,19 @@ public class Character extends Audit {
 
     private String name;
 
+    private String classname;
+
     private int itemLevel;
 
     private String description;
 
     private boolean goldGenerate;
 
-    private int contentCount;
-
     @Enumerated(EnumType.STRING)
     private ClassRole role;
 
-    @ElementCollection/*(fetch = FetchType.EAGER)*/
+
+    @ElementCollection
     @CollectionTable(name = "content_check", joinColumns = @JoinColumn(name = "character_id"))
     @MapKeyJoinColumn(name = "content_id")
     @Column(name = "content_check")
@@ -45,5 +47,14 @@ public class Character extends Audit {
 
     public enum ClassRole {
         DPS, SUP
+    }
+
+    public void update(String name, String classname, int itemLevel, String description, boolean goldGenerate, ClassRole role) {
+        this.name = name;
+        this.classname = classname;
+        this.itemLevel = itemLevel;
+        this.description = description;
+        this.goldGenerate = goldGenerate;
+        this.role = role;
     }
 }

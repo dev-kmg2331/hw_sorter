@@ -60,7 +60,7 @@ class CharacterServiceTest {
                         .user(user)
                         .role(Character.ClassRole.SUP)
                         .build()
-        ).forEach(characterService::register);
+        );
     }
 
     @Test

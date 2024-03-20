@@ -31,7 +31,7 @@ public class UserService {
     }
 
     
-    private class UserValidator {
+    private static class UserValidator {
         public static void validateLogin(User user, UserLogin userLogin) {
             // password unmatched
             if (!user.getPassword().equals(userLogin.getPassword()))
